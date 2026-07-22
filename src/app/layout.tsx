@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "Relay — Incident management without the chaos",
   description:
     "Explore solutions that put your business one step ahead.",
+  icons: {
+    icon: [{ url: "/figma/relayfavicon.png", type: "image/png" }],
+    apple: [{ url: "/figma/relayfavicon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
