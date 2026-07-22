@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { motionEase } from "@/lib/tokens";
 
 const SLIDE_W = 1113;
-const AUTO_MS = 10000;
+const AUTO_MS = 8000;
 const TRANSITION_S = 0.75;
 
 type Slide = {
@@ -166,9 +166,18 @@ export function EnterpriseSolutionsScroller() {
   useEffect(() => {
     const node = rootRef.current;
     if (!node) return;
+    // Loose trigger: scaled DesignCanvas + high threshold was delaying / flickering
+    // inView, which kept resetting the interval before the first advance.
     const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.35 },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          return;
+        }
+        // Only stop once fully off-screen — avoids boundary flicker resets.
+        if (entry.intersectionRatio === 0) setInView(false);
+      },
+      { threshold: [0, 0.05], rootMargin: "120px 0px" },
     );
     io.observe(node);
     return () => io.disconnect();
@@ -180,7 +189,9 @@ export function EnterpriseSolutionsScroller() {
       setIndex((prev) => (prev + 1) % slides.length);
     }, AUTO_MS);
     return () => window.clearInterval(id);
-  }, [inView, paused, index]);
+    // Intentionally omit `index` — including it restarted the 8s clock on every
+    // slide change / IO flicker and made the first rotation feel stuck.
+  }, [inView, paused]);
 
   const duration = reduceMotion.current ? 0 : TRANSITION_S;
 
