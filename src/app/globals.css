@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+:root {
+  --azure-50: #eff7ff;
+  --azure-100: #dcedfd;
+  --azure-200: #c0e0fd;
+  --azure-300: #95cdfb;
+  --azure-400: #63b0f7;
+  --azure-500: #3f90f2;
+  --azure-600: #3077e8;
+  --azure-700: #215dd4;
+  --raven-50: #f9fafb;
+  --raven-100: #f3f4f6;
+  --raven-200: #e5e7eb;
+  --raven-300: #d1d6db;
+  --raven-400: #9ba4b0;
+  --raven-500: #737d8c;
+  --raven-600: #4a5764;
+  --raven-700: #364352;
+  --raven-800: #1e2b38;
+  --raven-900: #101928;
+  --alizarin-100: #fee2e2;
+  --alizarin-600: #e23636;
+  --emerald-100: #dcfce7;
+  --emerald-600: #16a34a;
+  --gamboge-100: #fcf2c9;
+  --gamboge-600: #d1770e;
+  /* Figma MCP token aliases */
+  --azure-radiance-50: var(--azure-50);
+  --azure-radiance-100: var(--azure-100);
+  --azure-radiance-200: var(--azure-200);
+  --azure-radiance-300: var(--azure-300);
+  --raven-radiance-100: var(--raven-100);
+  --raven-radiance-600: var(--raven-600);
+  --azure-radiance-400: var(--azure-400);
+  --azure-radiance-500: var(--azure-500);
+  --azure-radiance-600: var(--azure-600);
+  --azure-radiance-700: var(--azure-700);
+  --raven-800: var(--raven-800);
+  --alizarin-crimson-100: var(--alizarin-100);
+  --emerald-100: var(--emerald-100);
+  --gamboge-100: var(--gamboge-100);
+}
+
+@theme inline {
+  --color-azure-50: var(--azure-50);
+  --color-azure-100: var(--azure-100);
+  --color-azure-200: var(--azure-200);
+  --color-azure-300: var(--azure-300);
+  --color-azure-400: var(--azure-400);
+  --color-azure-500: var(--azure-500);
+  --color-azure-600: var(--azure-600);
+  --color-azure-700: var(--azure-700);
+  --color-raven-50: var(--raven-50);
+  --color-raven-100: var(--raven-100);
+  --color-raven-200: var(--raven-200);
+  --color-raven-300: var(--raven-300);
+  --color-raven-400: var(--raven-400);
+  --color-raven-500: var(--raven-500);
+  --color-raven-600: var(--raven-600);
+  --color-raven-700: var(--raven-700);
+  --color-raven-800: var(--raven-800);
+  --color-raven-900: var(--raven-900);
+  --color-alizarin-100: var(--alizarin-100);
+  --color-alizarin-600: var(--alizarin-600);
+  --color-emerald-100: var(--emerald-100);
+  --color-emerald-600: var(--emerald-600);
+  --color-gamboge-100: var(--gamboge-100);
+  --color-gamboge-600: var(--gamboge-600);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-instrument-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--azure-50);
+  color: var(--raven-900);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-serif-display {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-1 * var(--marquee-shift, 0px)), 0, 0);
+  }
+}
+
+.logo-marquee-track {
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.logo-marquee-item {
+  flex: 0 0 auto;
+}
+
+.logo-marquee-track--running {
+  animation: logo-marquee 40s linear infinite;
+}
+
+.animate-marquee {
+  animation: logo-marquee 40s linear infinite;
+}
+
+@keyframes bento-ant-march {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 16px 0;
+  }
+}
+
+.bento-ant-crawl {
+  animation: bento-ant-march 0.65s linear infinite;
+}
+
+@keyframes bento-ant-stroke-march {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.bento-ant-crawl-stroke {
+  animation: bento-ant-stroke-march 0.65s linear infinite;
+}
+
+@keyframes bento-ant-stroke-march-10 {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.bento-ant-crawl-stroke-10 {
+  animation: bento-ant-stroke-march-10 0.65s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee,
+  .logo-marquee-track--running {
+    animation: none;
+  }
+
+  .bento-ant-crawl,
+  .bento-ant-crawl-stroke,
+  .bento-ant-crawl-stroke-10 {
+    animation: none;
+  }
+}
