@@ -66,18 +66,19 @@ function StatBlock({
   );
 }
 
-/** Figma stats row — rapid count-up over 2s when section scrolls into view. */
+/** Figma stats row — rapid count-up over 2s when the numbers enter the viewport. */
 export function StatisticsCountUp() {
-  const { ref, inView } = useInViewOnce(0.12, "0px 0px -5% 0px");
+  // Gate on the number row only (not title / frosted box). ~48px type @ 1.1 leading.
+  const { ref, inView } = useInViewOnce(0.4, "0px");
 
   return (
     <>
       {/* Real box for IntersectionObserver (display:contents has zero size). */}
       <div
         ref={ref}
-        className="-translate-x-1/2 pointer-events-none absolute left-1/2 top-[1040px] h-[219px] w-[1114px]"
+        className="-translate-x-1/2 pointer-events-none absolute left-1/2 top-[1092px] h-[53px] w-[1114px]"
         aria-hidden
-        data-name="Stats scroll sentinel"
+        data-name="Stats numbers scroll sentinel"
       />
       <div
         className="-translate-x-1/2 absolute contents left-1/2 top-[1040px]"
