@@ -20,13 +20,15 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    id: "christian",
+    id: "christina",
     nodeId: "380:34",
     image: "/figma/imgEnterpriseChristianMain.png",
-    imageClass: "absolute inset-0 max-w-none object-cover object-[center_30%] size-full",
+    // Figma wraps ChristinaImage in rotate-180 + -scale-y-100 (= horizontal flip).
+    imageClass:
+      "absolute inset-0 max-w-none object-cover size-full scale-x-[-1]",
     quote:
       "“Thanks to Relay, everything from start to finish of our incident management is in one place. It is such a game changer.”",
-    name: "Christian Mariano",
+    name: "Christina Mariano",
     role: "Data Engineer, SpaceX",
   },
   {
